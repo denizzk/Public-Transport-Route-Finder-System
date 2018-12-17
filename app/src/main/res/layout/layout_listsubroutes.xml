@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/child_layout"
+    android:layout_marginRight="7dp">
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="horizontal">-->
+
+    <ImageView
+        android:id="@+id/subroute_icon"
+        android:layout_width="26sp"
+        android:layout_height="26sp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@+id/txt_subroute_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="3" />
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="6dp"-->
+    <!--android:background="@color/colorAccent"-->
+    <!--android:padding="2sp">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="26sp"-->
+    <!--android:layout_height="26sp"-->
+    <!--android:src="@mipmap/ic_launcher_round" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="3sp"-->
+    <!--android:text="53"-->
+    <!--android:textColor="#FFFFFFFF"-->
+    <!--android:textSize="16sp" />-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--<ImageView-->
+    <!--android:layout_width="26sp"-->
+    <!--android:layout_height="26sp"-->
+    <!--android:layout_marginLeft="6dp"-->
+    <!--android:src="@mipmap/ic_launcher_round" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="bottom"-->
+    <!--android:layout_marginLeft="3sp"-->
+    <!--android:text="3" />-->
+
+    <!--</LinearLayout>-->
+
+</LinearLayout>
