@@ -15,8 +15,7 @@ import com.se.ptrfs.R;
 public class TabDeleteRouteFragment extends Fragment {
 
     Button btnDeleteRoute;
-    EditText editRouteName, editRouteId, editRouteStartLat, editRouteStartLng, editRouteEndLat,
-            editRouteEndLng;
+    EditText editRouteName, editRouteId;
 
     @Nullable
     @Override
@@ -26,22 +25,13 @@ public class TabDeleteRouteFragment extends Fragment {
 
         editRouteName = view.findViewById(R.id.edit_route_name);
         editRouteId = view.findViewById(R.id.edit_route_id);
-        editRouteStartLat = view.findViewById(R.id.edit_route_start_lat);
-        editRouteStartLng = view.findViewById(R.id.edit_route_start_lng);
-        editRouteEndLat = view.findViewById(R.id.edit_route_end_lat);
-        editRouteEndLng = view.findViewById(R.id.edit_route_end_lng);
         btnDeleteRoute = view.findViewById(R.id.btn_delete_route);
 
 
         btnDeleteRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editRouteName.getText().toString().equals("") && !editRouteId.getText()
-                        .toString().equals("") &&
-                        !editRouteStartLat.getText().toString().equals("") && !editRouteStartLng
-                        .getText()
-                        .toString().equals("") && !editRouteEndLat.getText().toString().equals
-                        ("") && !editRouteEndLng.getText()
+                if (!editRouteName.getText().toString().equals("") || !editRouteId.getText()
                         .toString().equals("")) {
                     Toast.makeText(getContext(), editRouteId.getText().toString() + " " +
                             editRouteName

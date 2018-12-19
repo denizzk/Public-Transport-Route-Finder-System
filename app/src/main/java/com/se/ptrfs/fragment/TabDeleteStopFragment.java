@@ -25,17 +25,13 @@ public class TabDeleteStopFragment extends Fragment {
 
         editStopName = view.findViewById(R.id.edit_stop_name);
         editStopId = view.findViewById(R.id.edit_stop_id);
-        editStopLat = view.findViewById(R.id.edit_stop_lat);
-        editStopLng = view.findViewById(R.id.edit_stop_lng);
         btnDeleteStop = view.findViewById(R.id.btn_delete_stop);
 
 
         btnDeleteStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editStopName.getText().toString().equals("") && !editStopId.getText()
-                        .toString().equals("") &&
-                        !editStopLat.getText().toString().equals("") && !editStopLng.getText()
+                if (!editStopName.getText().toString().equals("") || !editStopId.getText()
                         .toString().equals("")) {
                     Toast.makeText(getContext(), editStopId.getText().toString() + " " +
                             editStopName
