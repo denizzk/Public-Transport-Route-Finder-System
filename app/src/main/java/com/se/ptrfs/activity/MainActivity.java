@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.getTabAt(0).setText("Find Routes");
-        tabLayout.getTabAt(1).setText("Check Nearby Stops");
+        tabLayout.getTabAt(0).setText("Find Route");
+        tabLayout.getTabAt(1).setText("Nearby Stops");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
         Menu menu = bottomNavigationView.getMenu();
