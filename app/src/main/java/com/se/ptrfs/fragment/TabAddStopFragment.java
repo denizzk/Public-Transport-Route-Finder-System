@@ -39,9 +39,12 @@ public class TabAddStopFragment extends Fragment {
                         .toString().equals("")) {
                     Toast.makeText(getContext(), editStopId.getText().toString() + " " +
                             editStopName
-                            .getText()
-                            .toString() + " stop successfully added!", Toast.LENGTH_SHORT).show();
-                } else Toast.makeText(getContext(), " Fill all the blanks!", Toast.LENGTH_SHORT).show();
+                                    .getText()
+                                    .toString() + " stop successfully added!", Toast
+                            .LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getContext(), " Fill all the blanks!", Toast.LENGTH_SHORT)
+                            .show();
             }
         });
 

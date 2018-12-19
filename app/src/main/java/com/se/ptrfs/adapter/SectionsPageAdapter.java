@@ -20,7 +20,6 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
-
     @Override
     public Fragment getItem(int position) {
         return mFragmentList.get(position);

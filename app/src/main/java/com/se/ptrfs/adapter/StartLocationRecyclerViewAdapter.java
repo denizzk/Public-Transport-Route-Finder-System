@@ -33,7 +33,8 @@ public class StartLocationRecyclerViewAdapter extends RecyclerView
     private List<Coordinate> mCoordinates = new ArrayList<>();
     private Context mContext;
 
-    public StartLocationRecyclerViewAdapter(List<String> mIcons, List<String> mAdresses, List<String>
+    public StartLocationRecyclerViewAdapter(List<String> mIcons, List<String> mAdresses,
+                                            List<String>
             mRegions, List<Coordinate> mCoordinates, Context mContext) {
         this.mIcons = mIcons;
         this.mAdresses = mAdresses;
@@ -88,7 +89,6 @@ public class StartLocationRecyclerViewAdapter extends RecyclerView
                         .getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_container_start,
                         fragment).addToBackStack(null).commit();
-
             }
         });
     }

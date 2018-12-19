@@ -1,19 +1,30 @@
 package com.se.ptrfs.fragment;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.se.ptrfs.POJO.Coordinate;
 import com.se.ptrfs.R;
+import com.se.ptrfs.adapter.RouteRecyclerViewAdapter;
 import com.se.ptrfs.adapter.StartLocationRecyclerViewAdapter;
 import com.se.ptrfs.retrofit.ApiClient;
 import com.se.ptrfs.retrofit.RestInterface;
@@ -28,7 +39,7 @@ import io.reactivex.schedulers.Schedulers;
 public class StartPointFragment extends Fragment {
 
     ImageButton startLocBtn, endLocBtn;
-    EditText startAddressEdit, startCityEdit, endAddressEdit, endCityEdit;
+    EditText startAddressEdit, startCityEdit, endAddressEdit, endCityEdit, editCity;
 
     RestInterface restInterface;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -53,22 +64,18 @@ public class StartPointFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         startLocBtn = getView().findViewById(R.id.btn_start_loc);
-        endLocBtn = getView().findViewById(R.id.btn_end_loc);
         startAddressEdit = getView().findViewById(R.id.edit_start_address);
-        endAddressEdit = getView().findViewById(R.id.edit_end_address);
-        startCityEdit = getView().findViewById(R.id.edit_start_city);
-        endCityEdit = getView().findViewById(R.id.edit_end_city);
 
         restInterface = ApiClient.getClient().create(RestInterface.class);
-
 
         startLocBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 compositeDisposable.add(restInterface.getLocation
-                        ("ae1ab18538c57ddfe9cb3249e830b1f0", startAddressEdit.getText().toString(),
-                                startCityEdit.getText().toString())
+                        ("ae1ab18538c57ddfe9cb3249e830b1f0", startAddressEdit.getText()
+                                        .toString().toLowerCase(),
+                                getArguments().getString("City").toLowerCase())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(location -> {
@@ -93,5 +100,6 @@ public class StartPointFragment extends Fragment {
                 );
             }
         });
+
     }
 }

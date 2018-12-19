@@ -39,14 +39,10 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-
-//        tabLayout.getTabAt(0).setIcon(R.drawable.ic_explore);
         tabLayout.getTabAt(0).setText("Find Routes");
-//        tabLayout.getTabAt(1).setIcon(R.drawable.ic_explore);
         tabLayout.getTabAt(1).setText("Check Nearby Stops");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView_Bar);
-//        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
@@ -56,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.ic_explore:
-
                         break;
 
                     case R.id.ic_stops:
@@ -69,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
                 }
-
-
                 return false;
             }
         });

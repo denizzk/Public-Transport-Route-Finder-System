@@ -1,6 +1,5 @@
 package com.se.ptrfs.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -53,7 +52,6 @@ public class EndPointFragment extends Fragment {
 
         endLocBtn = getView().findViewById(R.id.btn_end_loc);
         endAddressEdit = getView().findViewById(R.id.edit_end_address);
-        endCityEdit = getView().findViewById(R.id.edit_end_city);
 
         restInterface = ApiClient.getClient().create(RestInterface.class);
 
@@ -62,8 +60,9 @@ public class EndPointFragment extends Fragment {
             public void onClick(View v) {
 
                 compositeDisposable.add(restInterface.getLocation
-                        ("ae1ab18538c57ddfe9cb3249e830b1f0", endAddressEdit.getText().toString(),
-                                endCityEdit.getText().toString())
+                        ("ae1ab18538c57ddfe9cb3249e830b1f0", endAddressEdit.getText()
+                                        .toString().toLowerCase(),
+                                getArguments().getString("City").toLowerCase())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(location -> {

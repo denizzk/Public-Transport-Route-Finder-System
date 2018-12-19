@@ -38,8 +38,10 @@ public class TabAddRouteFragment extends Fragment {
             public void onClick(View v) {
                 if (!editRouteName.getText().toString().equals("") && !editRouteId.getText()
                         .toString().equals("") &&
-                        !editRouteStartLat.getText().toString().equals("") && !editRouteStartLng.getText()
-                        .toString().equals("") && !editRouteEndLat.getText().toString().equals("") && !editRouteEndLng.getText()
+                        !editRouteStartLat.getText().toString().equals("") && !editRouteStartLng
+                        .getText()
+                        .toString().equals("") && !editRouteEndLat.getText().toString().equals
+                        ("") && !editRouteEndLng.getText()
                         .toString().equals("")) {
                     Toast.makeText(getContext(), editRouteId.getText().toString() + " " +
                             editRouteName
@@ -51,7 +53,6 @@ public class TabAddRouteFragment extends Fragment {
                             .show();
             }
         });
-
 
         return view;
     }

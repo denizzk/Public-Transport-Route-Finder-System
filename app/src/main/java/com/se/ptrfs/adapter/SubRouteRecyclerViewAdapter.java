@@ -51,14 +51,12 @@ public class SubRouteRecyclerViewAdapter extends RecyclerView.Adapter<SubRouteRe
     public void onBindViewHolder(@NonNull SubRouteRecyclerViewAdapter.ViewHolder holder, int
             position) {
 
-            Glide.with(mContext)
-                    .asBitmap()
-                    .load(mSubrouteIcons.get(position))
-                    .into(holder.subrouteIcon);
+        Glide.with(mContext)
+                .asBitmap()
+                .load(mSubrouteIcons.get(position))
+                .into(holder.subrouteIcon);
 
-            holder.subDuration.setText(mSubDurations.get(position).toString());
-
-
+        holder.subDuration.setText(mSubDurations.get(position).toString());
     }
 
     @Override

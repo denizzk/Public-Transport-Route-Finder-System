@@ -88,8 +88,6 @@ public class EndLocationRecyclerViewAdapter extends RecyclerView
                         .getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragment_container_end,
                         fragment).addToBackStack(null).commit();
-
-
             }
         });
     }

@@ -27,9 +27,9 @@ public class PointViewerFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        icon= getView().findViewById(R.id.icon_img);
-        address= getView().findViewById(R.id.text_address);
-        region= getView().findViewById(R.id.text_region);
+        icon = getView().findViewById(R.id.icon_img);
+        address = getView().findViewById(R.id.text_address);
+        region = getView().findViewById(R.id.text_region);
 
         Glide.with(getContext())
                 .asBitmap()
@@ -37,7 +37,7 @@ public class PointViewerFragment extends Fragment {
                 .into(icon);
 
         address.setText(getArguments().getString("address"));
-        String s=getArguments().getString("region");
+        String s = getArguments().getString("region");
         region.setText(Character.toUpperCase(s.charAt(0)) + s.substring(1));
     }
 }
