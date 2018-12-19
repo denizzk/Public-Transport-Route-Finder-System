@@ -1,20 +1,21 @@
-package com.se.ptrfs;
+package com.se.ptrfs.fragment;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
+import com.se.ptrfs.R;
 import com.se.ptrfs.adapter.RouteRecyclerViewAdapter;
 import com.se.ptrfs.retrofit.ApiClient;
 import com.se.ptrfs.retrofit.RestInterface;
@@ -23,37 +24,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
-
-    RestInterface restInterface;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
+public class TabFindRouteFragment extends Fragment {
 
     Button searchBtn;
     FrameLayout startFrame, endFrame;
 
+    RestInterface restInterface;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     RouteRecyclerViewAdapter adapter = new RouteRecyclerViewAdapter();
     RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
+            Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_find_route_tab, container, false);
 
         restInterface = ApiClient.getClient().create(RestInterface.class);
 
-        startFrame = findViewById(R.id.fragment_container_start);
-        endFrame = findViewById(R.id.fragment_container_end);
-        searchBtn = findViewById(R.id.btn_search);
+        startFrame = view.findViewById(R.id.fragment_container_start);
+        endFrame = view.findViewById(R.id.fragment_container_end);
+        searchBtn = view.findViewById(R.id.btn_search);
 
-        recyclerView = findViewById(R.id.route_recycler_view);
+        recyclerView = view.findViewById(R.id.route_recycler_view);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         StartPointFragment startPointFragment = new StartPointFragment();
         fragmentTransaction.add(R.id.fragment_container_start, startPointFragment);
@@ -64,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Fragment startPointFragment = new StartPointFragment();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.fragment_container_start,
                             startPointFragment).addToBackStack(null).commit();
                 }
             });
         }
 
-        fragmentManager = getSupportFragmentManager();
+        fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         EndPointFragment endPointFragment = new EndPointFragment();
         fragmentTransaction.add(R.id.fragment_container_end, endPointFragment);
@@ -82,25 +84,26 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Fragment endPointFragment = new EndPointFragment();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.fragment_container_end,
                             endPointFragment).addToBackStack(null).commit();
                 }
             });
         }
 
-
+        return view;
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         if (true) {
             searchBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences sp = getSharedPreferences("coordinates", Activity
+                    SharedPreferences sp = getActivity().getSharedPreferences("coordinates",
+                            Activity
                             .MODE_PRIVATE);
                     float start_lat = sp.getFloat("start_lat", -1);
                     float end_lat = sp.getFloat("end_lat", -1);
@@ -138,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
                                     currency.add(i, routeRepo.routes.get(i).currency);
 
                                     subrouteSegmentType.add(new ArrayList<>());
-                                    subrouteIcons.add( new ArrayList<>());
-                                    subDurations.add( new ArrayList<>());
-                                    subrouteStopCount.add( new ArrayList<>());
+                                    subrouteIcons.add(new ArrayList<>());
+                                    subDurations.add(new ArrayList<>());
+                                    subrouteStopCount.add(new ArrayList<>());
                                     for (int j = 0; j < routeRepo.routes.get(i).routeSegments
                                             .size();
                                          j++) {
@@ -165,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                                         walktimes, departureTime, arrivalTime, cost, currency,
                                         subrouteSegmentType,
                                         subrouteIcons, subDurations, subrouteStopCount,
-                                        getBaseContext());
+                                        getActivity());
                                 recyclerView.setAdapter(adapter);
 
                             })

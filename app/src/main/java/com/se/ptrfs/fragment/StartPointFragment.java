@@ -1,4 +1,4 @@
-package com.se.ptrfs;
+package com.se.ptrfs.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.se.ptrfs.POJO.Coordinate;
+import com.se.ptrfs.R;
 import com.se.ptrfs.adapter.StartLocationRecyclerViewAdapter;
 import com.se.ptrfs.retrofit.ApiClient;
 import com.se.ptrfs.retrofit.RestInterface;

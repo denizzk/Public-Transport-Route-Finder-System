@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.se.ptrfs.POJO.Coordinate;
 import com.se.ptrfs.R;
-import com.se.ptrfs.PointViewerFragment;
+import com.se.ptrfs.fragment.PointViewerFragment;
 
 import java.util.ArrayList;
 import java.util.List;

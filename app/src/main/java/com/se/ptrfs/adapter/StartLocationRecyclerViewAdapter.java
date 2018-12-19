@@ -12,16 +12,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.se.ptrfs.MainActivity;
 import com.se.ptrfs.POJO.Coordinate;
 import com.se.ptrfs.R;
-import com.se.ptrfs.PointViewerFragment;
+import com.se.ptrfs.fragment.PointViewerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
