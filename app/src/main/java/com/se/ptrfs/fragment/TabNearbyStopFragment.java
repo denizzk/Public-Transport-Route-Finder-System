@@ -88,63 +88,51 @@ public class TabNearbyStopFragment extends Fragment {
                     List<Coordinate> coordinates = new ArrayList<>();
 
                     compositeDisposable.add(restInterface.getLocation
-                                    ("ae1ab18538c57ddfe9cb3249e830b1f0", editAddress.getText()
-                                                    .toString().toLowerCase(),
-                                            editCity.getText().toString().toLowerCase())
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(location -> {
+                            ("ae1ab18538c57ddfe9cb3249e830b1f0", editAddress.getText()
+                                            .toString().toLowerCase(),
+                                    editCity.getText().toString().toLowerCase())
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(location -> {
 
-                                        for (int i = 0; i < location.size(); i++) {
-                                            iconUrls.add(i, location.get(i).iconUrl);
-                                            adresses.add(i, location.get(i).name);
-                                            regions.add(i, location.get(i).region);
-                                            coordinates.add(i, location.get(i).coordinate);
+                                for (int i = 0; i < location.size(); i++) {
+                                    iconUrls.add(i, location.get(i).iconUrl);
+                                    adresses.add(i, location.get(i).name);
+                                    regions.add(i, location.get(i).region);
+                                    coordinates.add(i, location.get(i).coordinate);
+                                }
+
+                                mapView.getMapAsync(new OnMapReadyCallback() {
+
+                                    @Override
+                                    public void onMapReady(MapboxMap mapboxMap) {
+
+                                        mapboxMap.removeAnnotations();
+
+                                        for (int i = 0; i < coordinates.size(); i++) {
+                                            LatLng coordinate = new LatLng(coordinates
+                                                    .get(i).lat, coordinates
+                                                    .get(i).lng);
+
+                                            mapboxMap.addMarker(new MarkerOptions()
+                                                    .position(coordinate)
+                                                    .title(adresses.get(i)
+                                                            .toUpperCase()));
                                         }
+                                        CameraPosition position = new CameraPosition
+                                                .Builder()
+                                                .target(new LatLng(coordinates.get(0)
+                                                        .lat, coordinates.get(0).lng))
+                                                .zoom(10)
+                                                .tilt(20)
+                                                .build();
 
-                                        mapView.getMapAsync(new OnMapReadyCallback() {
-
-                                            @Override
-                                            public void onMapReady(MapboxMap mapboxMap) {
-
-                                                mapboxMap.removeAnnotations();
-
-                                                for (int i = 0; i < coordinates.size(); i++) {
-                                                    LatLng coordinate = new LatLng(coordinates
-                                                            .get(i).lat, coordinates
-                                                            .get(i).lng);
-
-
-//                                            Bitmap bitmap = Glide.with(getContext())
-//                                                        .asBitmap()
-//                                                        .load(iconUrls.get(i)).into(24, 24)
-//                                                        .get();
-
-
-//                                            IconFactory iconFactory = IconFactory
-//                                                    .getInstance(getActivity());
-//                                            Icon icon = iconFactory.fromBitmap(bitmap);
-
-                                                    mapboxMap.addMarker(new MarkerOptions()
-                                                                    .position(coordinate)
-                                                                    .title(adresses.get(i)
-                                                                            .toUpperCase()));
-//                                                    .icon(icon));
-                                                }
-                                                CameraPosition position = new CameraPosition
-                                                        .Builder()
-                                                        .target(new LatLng(coordinates.get(0)
-                                                                .lat, coordinates.get(0).lng))
-                                                        .zoom(10)
-                                                        .tilt(20)
-                                                        .build();
-
-                                                mapboxMap.animateCamera(CameraUpdateFactory
-                                                                .newCameraPosition(position),
-                                                        100);
-                                            }
-                                        });
-                                    })
+                                        mapboxMap.animateCamera(CameraUpdateFactory
+                                                        .newCameraPosition(position),
+                                                100);
+                                    }
+                                });
+                            })
                     );
                 }
             }
